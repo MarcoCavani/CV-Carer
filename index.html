@@ -60,6 +60,21 @@
             margin: 0;
         }
     }
+    @media print {
+    body {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+    }
+
+    #resume {
+        width: 100%;
+        padding: 20mm;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
 </style>
 </head>
 
@@ -178,23 +193,19 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
     </button>
 </div>
 
-<!-- html2pdf library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 <script>
 function downloadPDF() {
     const element = document.getElementById("resume");
 
-    html2pdf()
-        .set({
-            margin: 0.5,
-            filename: "Marco_Cavani_Resume.pdf",
-            image: { type: "jpeg", quality: 1 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: "in", format: "a4", orientation: "portrait" }
-        })
-        .from(element)
-        .save();
+    // hide button before printing
+    document.querySelector(".no-print").style.display = "none";
+
+    window.print();
+
+    // restore button after
+    setTimeout(() => {
+        document.querySelector(".no-print").style.display = "block";
+    }, 1000);
 }
 </script>
 
