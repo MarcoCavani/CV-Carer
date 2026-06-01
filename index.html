@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Marco Cavani Resume</title>
+<title>mr Marco Cavani Resume</title>
 
 <style>
     body {
         font-family: Arial, sans-serif;
-        margin: 0;
-        background: #fff;
+        margin: 40px;
         color: #222;
-    }
-
-    /* A4 CLEAN CONTAINER */
-    #resume {
-        width: 800px;
-        margin: 0 auto;
-        padding: 40px;
         line-height: 1.4;
     }
 
@@ -45,9 +37,8 @@
         margin-top: 5px;
     }
 
-    /* BUTTON */
     .download-btn {
-        margin: 20px;
+        margin-top: 30px;
         padding: 12px 20px;
         background-color: #1a73e8;
         color: white;
@@ -65,20 +56,16 @@
         .no-print {
             display: none;
         }
+        body {
+            margin: 0;
+        }
     }
 </style>
 </head>
 
 <body>
 
-<!-- BUTTON -->
-<div class="no-print">
-    <button class="download-btn" onclick="downloadPDF()">
-        Download PDF
-    </button>
-</div>
-
-<!-- RESUME -->
+<!-- RESUME CONTENT START -->
 <div id="resume">
 
 <h1>MARCO CAVANI</h1>
@@ -91,7 +78,7 @@ Certificate III in Individual Support (Ageing & Disability)
 <div class="section">
 <h2>Professional Summary</h2>
 <p>
-Compassionate Aged Care and Disability Support Worker with Certificate III in Individual Support (Ageing and Disability), 120 hours of aged care placement experience, and hands-on experience in residential and home-based care.
+Compassionate Aged Care and Disability Support Worker with Certificate III in Individual Support (Ageing and Disability), Skilled in personal care, mobility support, hygiene assistance, emotional support, companionship, meal preparation, and household tasks. Committed to person-centred care, dignity, and independence.
 </p>
 </div>
 
@@ -117,8 +104,9 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 <div class="title">Aged Care Support Worker (Placement)</div>
 <div class="sub">Juniper Hilltop Aged Care | Perth WA | 2026 | 120 Hours</div>
 <ul>
-<li>Assisted residents with personal care</li>
-<li>Provided emotional support</li>
+<li>Assisted residents with personal care, hygiene, and mobility support</li>
+<li>Provided companionship and emotional support</li>
+<li>Supported meal service and hydration</li>
 <li>Followed care plans and WHS procedures</li>
 </ul>
 </div>
@@ -127,9 +115,12 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 <div class="title">Care Worker – Gwelup Residential Care</div>
 <div class="sub">Bethanie Gwelup Aged Care Home | Perth WA | 2025</div>
 <ul>
-<li>Delivered personal care with dignity and respect</li>
-<li>Supported mobility and transfers</li>
-<li>Maintained safe environments</li>
+<li>Delivered personal care including showering, toileting, grooming, and dressing with dignity and respect</li>
+<li>Assessed and followed individual care plans</li>
+<li>Supported mobility assistance and safe transfers</li>
+<li>Maintained clean, safe, and comfortable living environments</li>
+<li>Worked collaboratively with nursing and care teams</li>
+<li>Followed infection control and WHS procedures</li>
 </ul>
 </div>
 
@@ -137,8 +128,9 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 <div class="title">Aged Care Kitchen Hand / Support Worker</div>
 <div class="sub">Flexi Staff | Perth WA | 2023–2024</div>
 <ul>
-<li>Assisted elderly residents in care environments</li>
-<li>Maintained hygiene and infection control</li>
+<li>Supported elderly residents in aged care environments</li>
+<li>Assisted with meals and hygiene standards</li>
+<li>Maintained infection control procedures</li>
 </ul>
 </div>
 
@@ -146,8 +138,9 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 <div class="title">Family Carer – Palliative Care</div>
 <div class="sub">Perth WA | 2021–2023</div>
 <ul>
-<li>Provided full personal care and support</li>
-<li>Assisted with meals and routines</li>
+<li>Provided full personal care and mobility assistance</li>
+<li>Assisted with meals and medication routines</li>
+<li>Delivered emotional and end-of-life support</li>
 </ul>
 </div>
 
@@ -155,8 +148,10 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 <div class="title">General Utility / Kitchen Hand (FIFO)</div>
 <div class="sub">Hays Australia | Perth WA | 2019–2021</div>
 <ul>
-<li>Assisted food preparation and cleaning</li>
-<li>Maintained hygiene standards in remote sites</li>
+<li>FIFO utility work in remote mining sites</li>
+<li>Assisted food preparation and storage</li>
+<li>Maintained kitchen cleanliness and hygiene</li>
+<li>Used cleaning chemicals safely</li>
 </ul>
 </div>
 
@@ -173,30 +168,33 @@ Compassionate Aged Care and Disability Support Worker with Certificate III in In
 </div>
 
 </div>
+<!-- RESUME CONTENT END -->
 
-<!-- SCRIPT -->
+
+<!-- DOWNLOAD BUTTON -->
+<div class="no-print">
+    <button class="download-btn" onclick="downloadPDF()">
+        Download PDF
+    </button>
+</div>
+
+<!-- html2pdf library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
 function downloadPDF() {
     const element = document.getElementById("resume");
 
-    const options = {
-        margin: 0,
-        filename: "Marco_Cavani_Resume.pdf",
-        image: { type: "jpeg", quality: 1 },
-        html2canvas: {
-            scale: 2,
-            useCORS: true
-        },
-        jsPDF: {
-            unit: "px",
-            format: [800, 1100],
-            orientation: "portrait"
-        }
-    };
-
-    html2pdf().set(options).from(element).save();
+    html2pdf()
+        .set({
+            margin: 0.5,
+            filename: "Marco_Cavani_Resume.pdf",
+            image: { type: "jpeg", quality: 1 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "a4", orientation: "portrait" }
+        })
+        .from(element)
+        .save();
 }
 </script>
 
